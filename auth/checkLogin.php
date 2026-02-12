@@ -1,5 +1,6 @@
 <?php
 require '../connection.php';
+session_start();    
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -7,6 +8,7 @@ if (isset($_POST['login'])) {
     $result = $conn->query($sql);
     $row = mysqli_fetch_assoc($result);
     if ($password == $row['password']) {
+        $_SESSION['is_admin'] = $row['is_admin'];
         if ($row['is_admin'] == 1) {
             header('location:../admin/dashboard.php');
         } else {

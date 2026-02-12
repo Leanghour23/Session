@@ -1,5 +1,17 @@
-<?php include __DIR__ . '/../page/header.php' ?>
-    <h1 class="text-center">Welcome To Home Page</h1>
-    <a href="../Session/auth/login.php" class="btn btn-primary text-center ">Login</a>
-    <a href="../Session/auth/register.php" class="btn btn-success ">Register</a>
-<?php include __DIR__ . '/../page/footer.php' ?>
+<?php
+include '../page/header.php';
+session_start();
+?>
+<h1 class="text-center">Welcome To Home Page</h1>
+<?php 
+if (isset($_SESSION['email'])) {
+    echo '
+    <a href="../auth/logout.php" class="btn btn-danger text-center">Logout</a>
+    ';
+} else {
+    echo '
+    <a href="../auth/login.php" class="btn btn-primary text-center">Login</a>
+    <a href="../auth/register.php" class="btn btn-success">Register</a>';
+}
+?>
+<?php include '../page/footer.php';
